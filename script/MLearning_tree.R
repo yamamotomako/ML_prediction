@@ -42,6 +42,6 @@ mismatch_result %>% dplyr::select(category, tree_pred, chr, start, dbsnp, cosmic
 
 print ("making decision tree result...")
 write.table(table, paste0(outdir, "/MLresult/tree_table.txt"), row.names=FALSE, quote=FALSE, append=FALSE)
-write.table(mismatch_result, paste0(outdir, "/MLresult/tree_mismatch.txt"), row.names=FALSE, quote=FALSE, append=FALSE)
+write.table(mismatch_result, paste0(outdir, "/MLresult/tree_mismatch.txt.tmp"), row.names=FALSE, quote=FALSE, append=FALSE)
 
 

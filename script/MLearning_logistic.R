@@ -9,6 +9,7 @@ somatic_num <- args[2]
 
 d <- read.csv(paste0(outdir, "/result_all_pvalue.txt"), stringsAsFactors = TRUE, header = TRUE, sep="\t")
 
+d$category <- ifelse(d$category == "somatic",0,1)
 
 #data split
 set.seed(sample.int(1000,1))
@@ -24,7 +25,7 @@ y <- d[-tmp,]
 
 
 #training
-train_model = glm(category ~ dbsnp + cosmic + exac + cohort + misrate, data=x, family = binomial(link="logit"))
+train_model = glm(category ~ dbsnp + cosmic + exac + misrate + log_pvalue + othersnp + variant + depth + cohort_count, data=x, family = binomial(link="logit"))
 summary(train_model)
 
 test_predict <- round(predict(train_model, y, type="response"))
@@ -34,8 +35,8 @@ result <- cbind(y, test_predict)
 mismatch_result <- result %>% filter(result$category != result$test_predict)
 
 print ("making logistic regression result...")
-write.table(summary, paste0(outdir, "/MLresult/logistic_summary.txt"), row.names=FALSE, quote=FALSE. append=FALSE)
+write.table(summary, paste0(outdir, "/MLresult/logistic_summary.txt"), row.names=FALSE, quote=FALSE, append=FALSE)
 write.table(result_tbl, paste0(outdir, "/MLresult/logistic_table.txt"), row.names=FALSE, quote=FALSE, append=FALSE)
-write.table(mismatch_result, paste0(outdir, "/MLresult/logistic_mismatch.txt"), row.names=FALSE, quote=FALSE, append=FALSE)
+write.table(mismatch_result, paste0(outdir, "/MLresult/logistic_mismatch.txt.tmp"), row.names=FALSE, quote=FALSE, append=FALSE)
 
 
