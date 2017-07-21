@@ -1,10 +1,10 @@
 library(dplyr)
 library(ggplot2)
 
-#args <- commandArgs(trailingOnly = T)
-#outdir <- args[1]
+args <- commandArgs(trailingOnly = T)
+outdir <- args[1]
 
-outdir <- "/Users/yamamoto/work/plot_renew"
+#outdir <- "/Users/yamamoto/work/plot_renew"
 
 print ("building mutation count...")
 data_tn <- read.table(paste0(outdir, "/filt_tn_1.txt"), stringsAsFactors = FALSE, header = FALSE, sep="\t")
