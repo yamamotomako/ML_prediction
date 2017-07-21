@@ -33,13 +33,6 @@ p + theme(axis.text.x = element_text(angle = 90, size = rel(1.3)),
     xlab("sample name")
 
 
-formatter <- function(x){
-    x_new <- x.
-    return()
-}
-
-
-
 
 
 
