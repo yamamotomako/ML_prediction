@@ -1,12 +1,11 @@
 library(dplyr)
 library(ggplot2)
 
-args <- commandArgs(trailingOnly = T)
-outdir <- args[1]
+#args <- commandArgs(trailingOnly = T)
+#outdir <- args[1]
 
+outdir <- "/Users/yamamoto/work/plot_renew"
 
-#plot of mutation count
-#data_mutation = paste0(outdir, "/mutation_count.txt")
 print ("building mutation count...")
 data_tn <- read.table(paste0(outdir, "/filt_tn_1.txt"), stringsAsFactors = FALSE, header = FALSE, sep="\t")
 data_n <- read.table(paste0(outdir, "/filt_n_1.txt"), stringsAsFactors = FALSE, header = FALSE, sep="\t")
@@ -17,9 +16,33 @@ colnames(data_tn) <- c("sample","mcount", "type")
 colnames(data_n) <- c("sample","mcount", "type")
 
 data_all <- rbind(data_tn, data_n)
+data_all$sample <- gsub("T_TN", " ", data_all$sample)
+data_all$sample <- gsub("N_N", "", data_all$sample)
 
 p <- ggplot(data_all, aes(x=sample, y=mcount, fill=type)) + geom_bar(stat="identity")
-p + theme(axis.text.x = element_text(angle = 90)) + guides(fill = FALSE) + ylab("mutation count") + scale_y_log10()
+p + theme(axis.text.x = element_text(angle = 90, size = rel(1.3)),
+          axis.text.y = element_text(size=rel(1.5)),
+          axis.title.x = element_text(size = rel(1.5)),
+          axis.title.y = element_text(size = rel(1.5)),
+          legend.text = element_text(size = rel(1.3)),
+          legend.title = element_text(size = rel(1.5))
+          ) + 
+    scale_fill_discrete(labels=c("germline","somatic"), name="cancer type") +
+    scale_y_log10(breaks=c(10,100,1000,10000), labels=c("1","2","3","4")) +
+    ylab("log10(mutation count)") +
+    xlab("sample name")
+
+
+formatter <- function(x){
+    x_new <- x.
+    return()
+}
+
+
+
+
+
+
 ggsave(paste0(outdir, "/img/mutation_count.png"))
 
 
