@@ -99,7 +99,7 @@ p + scale_x_discrete(limits=label) +
           legend.title = element_text(size = rel(1.3))
     ) + 
     ylab("ratio of ExAC (%)") +
-    xlab("cancer ype")
+    xlab("cancer type")
 
 
 
