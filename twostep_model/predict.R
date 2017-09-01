@@ -3,6 +3,7 @@ library(VGAM)
 library(dplyr)
 
 #data import
+#in the case of indel/snp data, just change the file path wrote below.
 d_somatic = read.csv("/Users/yamamoto/work/result_new/somatic.txt", stringsAsFactors = TRUE, header = TRUE, sep="\t")
 d_germline = read.csv("/Users/yamamoto/work/result_new/germline.txt", stringsAsFactors = TRUE, header = TRUE, sep="\t")
 
