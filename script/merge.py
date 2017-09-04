@@ -52,7 +52,7 @@ for file in os.listdir(inputdir):
             cnter += 1
 
             if cnter == 1:
-                g.write(line.rstrip("\n") + "\t".join(["dbsnp","cosmic","exac","misrate_othersnp","depth_othersnp","variant_othersnp","cohort_count","alpha","beta"]) + "\n")
+                g.write(line.rstrip("\n") + "\t" + "\t".join(["dbsnp","cosmic","exac","misrate_othersnp","depth_othersnp","variant_othersnp","cohort_count","alpha","beta"]) + "\n")
                 continue
 
             samplename = re.sub(r"[N|T].genomon_mutation.result.filt.txt", "", file)
