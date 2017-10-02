@@ -1,3 +1,7 @@
+
+
+
+
 This tool enables you to classify between somatic and germline cancer cell, an predict its feature by using machine learning algorithm.
 
 Plese execute...<br><br>
