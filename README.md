@@ -4,8 +4,8 @@
 Identification of somatic mutation in cancer genome is a key step for clinical sequencing.<br>
 However there are various difficulties for obtaining matched control because of<br>
 legacy samples, ethical problems, and high sequencing cost and so on.<br>
-Then machine learning approach will be effective for classifying somatic mutation <br>
-from germline and sequencing errors in the condition of no matched control.<br>
+Then machine learning approach will be effective for classifying between somatic and <br>
+germline mutation, and sequencing errors in the condition of no matched control.<br>
 This tools enables you to predict somatic from germline and gives graphs of feature and learning results.<br>
 
 <h4>Material</h4>

@@ -1,5 +1,6 @@
 library(rpart)
 library(VGAM)
+library(dplyr)
 
 
 d_somatic = read.csv("/Users/yamamoto/work/result_new/somatic.txt", stringsAsFactors = TRUE, header = TRUE, sep="\t")
@@ -8,6 +9,9 @@ d_germline = read.csv("/Users/yamamoto/work/result_new/germline.txt", stringsAsF
 
 d_somatic$dbSNP <- ifelse(d_somatic$dbSNP== "True",1,0)
 d_germline$dbSNP <- ifelse(d_germline$dbSNP == "True",1,0)
+
+d_somatic <- dplyr::mutate(d_somatic, exac_new=-log10(d_somatic$ExAC+1e-6))
+d_germline <- dplyr::mutate(d_germline, exac_new=-log10(d_germline$ExAC+1e-6))
 
 d_somatic <- dplyr::mutate(d_somatic, othersnp=ifelse(d_somatic$other_misrate == "", 0, 1))
 d_germline <- dplyr::mutate(d_germline, othersnp=ifelse(d_germline$other_misrate == "", 0, 1))
